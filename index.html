@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./index.css">
     <title>3d model</title>
 </head>
 <body>
@@ -38,15 +40,17 @@
             scene.add(gltf.scene);
         });
 
+        //scene.background = new THREE.Color(0xffffff);
+
         var light = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
         scene.add(light);
         
-        camera.position.set(0, 0, 10);
+        camera.position.set(0, 1, 5);
 
         function animate(){
             requestAnimationFrame(animate);
+            obj.rotation.y += 0.01;
             renderer.render(scene, camera);
-
         }
 
         animate();
