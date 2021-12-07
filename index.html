@@ -9,7 +9,20 @@
     <title>3d model</title>
 </head>
 <body>
+    <h1>hello humans</h1>
 
+    <div class="container">
+        <div class="boxes">
+
+        </div>
+        <div class="boxes">
+            
+        </div>
+        <div class="boxes">
+            
+        </div>
+
+    </div>
 
     <script src="three.js"></script>
     <script type="module" src="GLTFLoader.js"></script>
@@ -17,18 +30,26 @@
     <script type="module">
         import{GLTFLoader} from "./GLTFLoader.js";
 
+        ///////////
+        //add scene
         var scene = new THREE.Scene();
 
+
+        ////////////
+        //add camera
         var camera = new THREE.PerspectiveCamera(
-            75,
+            90,
             window.innerWidth/window.innerHeight,
             0.01,
             1000
         );
+        //set camera position
+        camera.position.set(0, 1, 5);
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
+        
 
         ///////////////////
         //import our object
@@ -40,20 +61,33 @@
             scene.add(gltf.scene);
         });
 
+        /////////////////////////
+        //change background color
         //scene.background = new THREE.Color(0xffffff);
+
+
+        ///////
+        //light
 
         var light = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
         scene.add(light);
+
+        //more lights
+
         
-        camera.position.set(0, 1, 5);
+        ///////////////
+        //add animation
 
         function animate(){
             requestAnimationFrame(animate);
-            obj.rotation.y += 0.01;
+            scene.rotation.y += 0.01;
             renderer.render(scene, camera);
-        }
+        };
 
+        //call animation function
         animate();
+
+        
 
     </script>
     
