@@ -1,0 +1,28 @@
+{
+  "name": "project-three-api",
+  "version": "1.0.0",
+  "description": "hi,\r This is a simple 3d model file display with active api cart to switch view.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nina55555/project-three-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nina55555/project-three-api/issues"
+  },
+  "homepage": "https://github.com/nina55555/project-three-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.15",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
+  }
+}

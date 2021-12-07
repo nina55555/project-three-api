@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./index.css" />
+    <title>3d model</title>
+  </head>
+  <body>
+    <h1>hello humans</h1>
+
+    <div id="container">
+      <div class="boxes">
+        <a href="#">box1</a>
+      </div>
+      <div class="boxes">
+        <a href="#">box</a>
+      </div>
+      <div class="boxes">
+       
+      </div>
+    </div>
+
+    <script src="three.js"></script>
+    <script type="module" src="GLTFLoader.js"></script>
+    <script src="OrbitControls.js"></script>
+
+    <script type="module">
+      import { GLTFLoader } from "./GLTFLoader.js";
+
+      ///////////
+      //add scene
+      var scene = new THREE.Scene();
+      //change background color
+      //scene.background = new THREE.Color(0xffffff);
+
+      ////////////
+      //add camera
+      var camera = new THREE.PerspectiveCamera(
+        100,
+        window.innerWidth / window.innerHeight,
+        0.01,
+        1000
+      );
+      //set camera position
+      camera.position.set(3, 1, 5);
+
+      //////////////
+      //add renderer
+      var renderer = new THREE.WebGLRenderer();
+      //set renderer
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      ///////////////////
+      //import our object
+      var loader = new GLTFLoader();
+
+      var obj;
+      loader.load("scene.gltf", function (gltf) {
+        obj = gltf.scene;
+        scene.add(gltf.scene);
+      });
+
+      ////////
+      //light
+      var light = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
+      scene.add(light);
+      //set more lights
+
+      ///////////////
+      //orbitControls
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+      ///////////////
+      //add animation
+      function animate() {
+        requestAnimationFrame(animate);
+        scene.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      //call animation function
+      animate();
+
+
+
+
+
+
+      //////////////////////
+      //Top part, display cards
+
+      main();
+
+      //Déclaration de la fonction générale
+      function main() {
+        //Appel à la fonction getQueryParam
+        getQueryParam();
+
+        //Déclaration de la fonction getQueryParam
+        function getQueryParam() {
+          //definition des query params pour manipuler les données de l'element au click
+          const urlSearchParam = new URLSearchParams(window.location.search);
+          const params = Object.fromEntries(urlSearchParam.entries());
+          console.log(params);
+
+          //appelle à la fonction getApiElement qui définie les query strings et recupere un teddy par son id avec le .id qui fait reference au parametre dans l'url
+          getApiElement(params.id);
+
+          //Déclaration de la fonction permettant l'appel à l'api pour l'afichage des données d'un teddy en particulier
+          function getApiElement() {
+              console.log('heyyyyy you ')
+            //appelle a l'api               
+
+            fetch(`http://localhost:5600/api/images/`)
+              //Gestion de la promesse envoyé par l'api
+              .then((resp) => resp.json())
+
+              .then((products) => {
+                //Affichage des éléments du Dom
+                console.log(products);
+                const Container = document.getElementById('container');
+
+
+                for (const product of products) {
+
+                const domItem = document.createElement("div");
+
+                const domItemCart = document.createElement("a");
+                const domItemTitle = document.createElement("div");
+                const domItemImgBox = document.createElement("div");
+                const domItemDescr = document.createElement("div");
+
+                const domItemImg = document.createElement("img");
+
+                domItem.classList.add("card");
+               
+                domItemTitle.textContent = product.name;
+                domItemTitle.classList.add("title");
+
+                domItemImgBox.classList.add("img-card");
+                
+                
+                domItemImg.classList.add("img");
+                domItemImg.width = 300;
+                domItemImg.height = 300;
+                domItemImg.src = product.imageURL;
+                domItemImg.setAttribute("alt", "api's picture");
+                console.log(domItemImg)
+                domItemDescr.textContent = product.description;
+                domItemDescr.classList.add("descr");
+
+              
+
+                domItemImgBox.appendChild(domItemImg);;
+
+                
+                domItem.appendChild(domItemCart);
+                domItem.appendChild(domItemTitle);
+                domItem.appendChild(domItemImgBox);
+                domItem.appendChild(domItemDescr);
+
+                Container.appendChild(domItem);
+
+            
+
+
+                    //Appel aux évènements du panier
+                    cartEvents();
+
+                    //Déclaration de la fonction cartEvents
+                    function cartEvents() {
+                    //au click sur ajout au panier
+                    domItem.addEventListener("click", () => {
+                      console.log('you push too hard on me, carefull i\'m delicate')
+                    });
+                    }
+            }
+               
+
+              });
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
