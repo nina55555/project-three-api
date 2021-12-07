@@ -12,15 +12,7 @@
     <h1>hello humans</h1>
 
     <div id="container">
-      <div class="boxes">
-        <a href="#">box1</a>
-      </div>
-      <div class="boxes">
-        <a href="#">box</a>
-      </div>
-      <div class="boxes">
-       
-      </div>
+      
     </div>
 
     <script src="three.js"></script>
@@ -136,17 +128,21 @@
 
                 const domItemImg = document.createElement("img");
 
-                domItem.classList.add("card");
-               
-                domItemTitle.textContent = product.name;
-                domItemTitle.classList.add("title");
 
+                domItem.classList.add("card");
+                domItemTitle.classList.add("title");
                 domItemImgBox.classList.add("img-card");
+                
+                domItemTitle.textContent = product.name;
+                //domItemTitle.style.backgroundColor = "red";
+
                 
                 
                 domItemImg.classList.add("img");
-                domItemImg.width = 300;
-                domItemImg.height = 300;
+                /*domItemImg.width = 300;
+                domItemImg.height = 300;*/
+                domItemImg.width = 50;
+                domItemImg.height = 50;
                 domItemImg.src = product.imageURL;
                 domItemImg.setAttribute("alt", "api's picture");
                 console.log(domItemImg)
