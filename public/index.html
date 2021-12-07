@@ -122,9 +122,8 @@
                 const domItem = document.createElement("div");
 
                 const domItemCart = document.createElement("a");
-                const domItemTitle = document.createElement("div");
                 const domItemImgBox = document.createElement("div");
-                const domItemDescr = document.createElement("div");
+                const domItemTitle = document.createElement("div");
 
                 const domItemImg = document.createElement("img");
 
@@ -132,8 +131,8 @@
                 domItem.classList.add("card");
                 domItemTitle.classList.add("title");
                 domItemImgBox.classList.add("img-card");
-                
-                domItemTitle.textContent = product.name;
+
+                domItemTitle.textContent = product.description;
                 //domItemTitle.style.backgroundColor = "red";
 
                 
@@ -145,9 +144,7 @@
                 domItemImg.height = 50;
                 domItemImg.src = product.imageURL;
                 domItemImg.setAttribute("alt", "api's picture");
-                console.log(domItemImg)
-                domItemDescr.textContent = product.description;
-                domItemDescr.classList.add("descr");
+                console.log(domItemImg);
 
               
 
@@ -155,10 +152,9 @@
 
                 
                 domItem.appendChild(domItemCart);
-                domItem.appendChild(domItemTitle);
                 domItem.appendChild(domItemImgBox);
-                domItem.appendChild(domItemDescr);
 
+                domItem.appendChild(domItemTitle);
                 Container.appendChild(domItem);
 
             

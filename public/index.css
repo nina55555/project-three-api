@@ -31,8 +31,28 @@ h1{
     align-items: center;
     margin: 5px;
     width: 100vw;
-    height: 100px;
+    height: 130px;
 }
+
+
+
+.title{
+    font-size: 10px;
+}
+
+
+.img{
+    border-radius: 25px;
+    border-bottom: 3px darkblue solid;
+    /*width: 50px;*/
+}
+
+
+.descr{
+    font-size: 7px;
+}
+
+
 
 .boxes{
     background-color: cyan;
