@@ -26,19 +26,22 @@
 
     <script src="three.js"></script>
     <script type="module" src="GLTFLoader.js"></script>
+    <script src="OrbitControls.js"></script>
 
-    <script type="module">
+    <script 
+    type="module">
         import{GLTFLoader} from "./GLTFLoader.js";
+       
 
         ///////////
         //add scene
         var scene = new THREE.Scene();
-
+ 
 
         ////////////
         //add camera
         var camera = new THREE.PerspectiveCamera(
-            90,
+            100,
             window.innerWidth/window.innerHeight,
             0.01,
             1000
@@ -64,6 +67,9 @@
         /////////////////////////
         //change background color
         //scene.background = new THREE.Color(0xffffff);
+
+        //orbitControl
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
         ///////
