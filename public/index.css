@@ -35,6 +35,14 @@ h1{
 }
 
 
+.card-container{
+    background-color: red;
+}
+
+
+.card{
+    padding: 0.5px;
+}
 
 .title{
     font-size: 10px;

@@ -13,6 +13,9 @@
 
     <div id="container">
       
+      <div id="photo">
+            
+      
     </div>
 
     <script src="three.js"></script>
@@ -79,31 +82,16 @@
 
 
 
-
-
-
-      //////////////////////
+      //////////////////////////
       //Top part, display cards
 
-      main();
-
-      //Déclaration de la fonction générale
-      function main() {
-        //Appel à la fonction getQueryParam
-        getQueryParam();
-
-        //Déclaration de la fonction getQueryParam
-        function getQueryParam() {
-          //definition des query params pour manipuler les données de l'element au click
-          const urlSearchParam = new URLSearchParams(window.location.search);
-          const params = Object.fromEntries(urlSearchParam.entries());
-          console.log(params);
-
-          //appelle à la fonction getApiElement qui définie les query strings et recupere un teddy par son id avec le .id qui fait reference au parametre dans l'url
-          getApiElement(params.id);
+    
+       
+        //appel à la function callApi
+        callApi();
 
           //Déclaration de la fonction permettant l'appel à l'api pour l'afichage des données d'un teddy en particulier
-          function getApiElement() {
+          function callApi() {
               console.log('heyyyyy you ')
             //appelle a l'api               
 
@@ -114,69 +102,63 @@
               .then((products) => {
                 //Affichage des éléments du Dom
                 console.log(products);
-                const Container = document.getElementById('container');
-
+                const Container = document.getElementById('photo');
 
                 for (const product of products) {
 
-                const domItem = document.createElement("div");
+                  //create elements
+                  const domItem = document.createElement("div");
+                  const domItemCard = document.createElement("a");
+                  const domItemImgBox = document.createElement("div");
+                  const domItemTitle = document.createElement("div");
+                  const domItemImg = document.createElement("img");
 
-                const domItemCart = document.createElement("a");
-                const domItemImgBox = document.createElement("div");
-                const domItemTitle = document.createElement("div");
+                  //add class
+                  domItem.classList.add("card-container");
+                  domItemCard.classList.add('card')
+                  domItemImgBox.classList.add("img-card");
+                  domItemTitle.classList.add("title");
+                  domItemImg.classList.add("img");
 
-                const domItemImg = document.createElement("img");
+                  //add text content
+                  domItemTitle.textContent = product.description;
+                  //domItemTitle.style.backgroundColor = "red";
+                  
+                  //add attributes
+                  domItemImg.src = product.imageURL;
+                  domItemImg.setAttribute("alt", "api's picture");
 
+                  //add style
+                  domItemImg.width = 50;
+                  domItemImg.height = 50;
 
-                domItem.classList.add("card");
-                domItemTitle.classList.add("title");
-                domItemImgBox.classList.add("img-card");
+                  //append
+                  domItemImgBox.appendChild(domItemImg);;
+                  
+                  domItem.appendChild(domItemCard);
+                  domItem.appendChild(domItemImgBox);
+                  domItem.appendChild(domItemTitle);
 
-                domItemTitle.textContent = product.description;
-                //domItemTitle.style.backgroundColor = "red";
-
-                
-                
-                domItemImg.classList.add("img");
-                /*domItemImg.width = 300;
-                domItemImg.height = 300;*/
-                domItemImg.width = 50;
-                domItemImg.height = 50;
-                domItemImg.src = product.imageURL;
-                domItemImg.setAttribute("alt", "api's picture");
-                console.log(domItemImg);
-
-              
-
-                domItemImgBox.appendChild(domItemImg);;
-
-                
-                domItem.appendChild(domItemCart);
-                domItem.appendChild(domItemImgBox);
-
-                domItem.appendChild(domItemTitle);
-                Container.appendChild(domItem);
-
-            
+                  Container.appendChild(domItem);
 
 
                     //Appel aux évènements du panier
-                    cartEvents();
+                    cardsEvent();
 
                     //Déclaration de la fonction cartEvents
-                    function cartEvents() {
-                    //au click sur ajout au panier
-                    domItem.addEventListener("click", () => {
-                      console.log('you push too hard on me, carefull i\'m delicate')
-                    });
-                    }
-            }
-               
+                    function cardsEvent() {
+                      //au click sur ajout au panier
+                      domItem.addEventListener("click", () => {
+                      console.log('you push too hard on me, carefull i\'m delicate');
+                      window.location = `produit.html?id=${product._id}`
 
+                      });
+
+                    }
+                }
               });
           }
-        }
-      }
+      
     </script>
   </body>
 </html>
