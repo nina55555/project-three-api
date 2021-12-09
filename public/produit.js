@@ -1,5 +1,9 @@
  
- 
+ //Appel à la fonction générale
+main()
+
+//Déclaration de la fonction générale
+function main(){
  
  
  //Appel à la fonction getQueryParam
@@ -19,27 +23,27 @@
 
 
            //Déclaration de la fonction permettant l'appel à l'api pour l'afichage des données d'un teddy en particulier
-            function getApiElement(photo) {
+            function getApiElement(chose) {
 
                 //appelle a l'api
-                fetch(`http://localhost:5600/api/${photo}`)
+                fetch(`http://localhost:5600/api/images/${chose}`)
 
                 //Gestion de la promesse envoyé par l'api
                 .then((resp) => resp.json())
 
                 .then((data) => {
                     //Affichage des éléments du Dom
-                    console.log(data);
+                    console.log(data)
 
-                    const box = document.getElementsByClassName('box');
+                    const box = document.getElementById('box')
 
                     
                     const domItemImg = document.createElement('img')
-                    const domItemName = document.createElement('div')
+                    const domItemName = document.createElement('h1')
 
                     domItemImg.src = data.imageUrl
                     domItemImg.classList.add('img')
-                    domItemImg.width = 300
+                    domItemImg.width = 300 
                     domItemImg.height = 300
                     domItemImg.setAttribute('alt', 'Teddy\'s picture')
 
@@ -54,7 +58,7 @@
                 });
             }
  }
-        
+}
 
 
 
