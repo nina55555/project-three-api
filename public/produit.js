@@ -23,10 +23,10 @@ function main(){
 
 
            //Déclaration de la fonction permettant l'appel à l'api pour l'afichage des données d'un teddy en particulier
-            function getApiElement(chose) {
+            function getApiElement(id) {
 
                 //appelle a l'api
-                fetch(`http://localhost:5600/api/images/${chose}`)
+                fetch(`http://localhost:5600/api/${id}`)
 
                 //Gestion de la promesse envoyé par l'api
                 .then((resp) => resp.json())
@@ -41,7 +41,7 @@ function main(){
                     const domItemImg = document.createElement('img')
                     const domItemName = document.createElement('h1')
 
-                    domItemImg.src = data.imageUrl
+                    domItemImg.src = data.imageURL
                     domItemImg.classList.add('img')
                     domItemImg.width = 300 
                     domItemImg.height = 300

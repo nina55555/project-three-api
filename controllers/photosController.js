@@ -29,6 +29,9 @@ const upload = multer({
 }).single('images');
 
 
+//multiple .array
+
+
 //déclaration des fonctions du router methode CRUD:
 //pour créer des articles:
 router.post('/upload',(req, res) => {
@@ -53,6 +56,7 @@ router.post('/upload',(req, res) => {
 
 
 //pour lire les articles:
+//lire toutes les entrées:
 router.get('/images', (req, res) => {
     PhotosModel.find((err, docs) => {
         console.log(docs)
@@ -60,6 +64,36 @@ router.get('/images', (req, res) => {
         else console.log ('error:'+ err);
     })
 });
+
+
+//lire 1 seule entrée:
+
+//pour recuperer un element à la fois
+
+//pour recuperer 1 seule image
+router.get('/:id', (req,res) =>{
+    if(!ObjectId.isValid(req.params.id))
+    return res.status(400).send('id non valide'+req.params.id)              
+                            
+                            PhotosModel.findById({_id : req.params.id},
+                                (err, docs) =>{
+                                    console.log(req.body);
+                                    console.log(req.body.imageURL);
+                                    if(!err) res.send(docs);
+
+                                    /*  
+                                    ///res.status(200).json({
+                                    message : "ok",
+                                    contenu : {_id : req.params.id}
+                                    })
+                                    ///
+                                    */
+                                    else console.log('update error:'+err);
+                                 }
+                            )
+                            
+});
+
 
 
 

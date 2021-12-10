@@ -33,6 +33,7 @@ h1{
     margin: 5px;
     width: 100vw;
     height: 130px;
+    
 }
 
 
@@ -46,7 +47,8 @@ h1{
 
 
 .card{
-    padding: 0.5px;
+    background-color: darkblue;
+    padding: 5.5px;
 }
 
 .title{
@@ -55,15 +57,11 @@ h1{
 
 
 .img{
-    border-radius: 25px;
+    border-radius: 45px;
     border: 1.8px rgb(230, 229, 229) solid;
     /*width: 50px;*/
 }
 
-
-.descr{
-    font-size: 7px;
-}
 
 
 
